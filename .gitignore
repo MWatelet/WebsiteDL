@@ -8,6 +8,7 @@ __pycache__/
 
 # User adds
 html_files/
+.idea/
 
 # Distribution / packaging
 .Python

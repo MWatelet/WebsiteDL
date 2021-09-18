@@ -17,9 +17,9 @@ def read_yaml_config(filename):
 def read_command_line(parser):
     parser.add_argument("yaml_filename", help="name of the yaml configuration file", nargs='?', default=CONFIG)
     parameter = parser.parse_args()
-    filename = parameter.yaml_filename
+    file_name = parameter.yaml_filename
     dir_path = path.dirname(path.realpath(__file__))
-    return dir_path + '/' + filename
+    return dir_path + '/' + file_name
 
 
 def get_url(parser):
