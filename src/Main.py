@@ -1,5 +1,5 @@
 from WebsiteDL import WebsiteDL
-from ConfigReader import get_url
+from src.ConfigReader import get_url
 
 
 if __name__ == "__main__":

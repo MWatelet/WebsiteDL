@@ -7,8 +7,8 @@ __pycache__/
 *.so
 
 # User adds
-html_files/
 .idea/
+html_files/
 
 # Distribution / packaging
 .Python
