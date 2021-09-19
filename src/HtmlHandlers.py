@@ -1,3 +1,4 @@
+import re
 from urllib.request import urlopen
 from urllib.parse import urlparse
 import shutil
@@ -16,7 +17,6 @@ class HtmlDownloader:
         :param url: url of the html file to download
         :return: name of the local file created with the downloaded html
         """
-        # file_name = self.local_folder_path + "/page" + urlparse(url).path.replace("/", "_") + ".html"
         file_name = path.join(self.local_folder_path, "page" + urlparse(url).path.replace("/", "_") + ".html")
         try:
             return self.download_html(file_name, url)
@@ -26,6 +26,10 @@ class HtmlDownloader:
 
     @staticmethod
     def download_html(file_name, url):
+        """
+        download the html file and create the local copy
+        :return: the name of the local file
+        """
         with urlopen(url) as response, open(file_name, 'wb') as out_file:
             shutil.copyfileobj(response, out_file)
         return file_name

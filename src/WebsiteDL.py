@@ -4,6 +4,8 @@ from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlparse
 
+EXTENSIONS = [".jpg", ".jpeg", ".mp4", ".webm", ".ogg", ".mp3", ".wav", ".png", ".gif"]
+
 
 class WebsiteDL:
 
@@ -56,6 +58,16 @@ class WebsiteDL:
         if target_url not in self.website_urls[base_url]:
             self.website_urls[base_url].append(target_url)
 
+    @staticmethod
+    def detect_media(url):
+        """
+        detect if the url target a media file
+        :return: boolean
+        """
+        path_to_inspect = urlparse(url).path
+        ext = path.splitext(path_to_inspect)[1]
+        return ext not in EXTENSIONS
+
     def url_must_be_processed(self, url):
         """
         check if the url is worth exploring
@@ -64,7 +76,7 @@ class WebsiteDL:
         # condition 2 : url is not containing a media (we are looking for html files only)
         # condition 3 : url does not lead to another website (facebook link for example)
         return url not in self.website_urls.keys() \
-               and "." not in url[len(self.base_url):] \
+               and self.detect_media(url) \
                and self.base_url in url
 
     def sanitize_url(self, url):
