@@ -5,30 +5,35 @@ from os import path
 CONFIG = "default_url.yaml"
 
 
-def read_yaml_config(filename):
-    try:
-        with open(filename, "r") as stream:
-            config = yaml.safe_load(stream)
-    except yaml.YAMLError:
-        config = False
-    return config
+def read_yaml_config():
+    """
+    :return: the url contained in the default_url.yaml config file
+    """
+    yaml_file = path.dirname(path.realpath(__file__)) + "/" + CONFIG
+    with open(yaml_file, "r") as stream:
+        config = yaml.safe_load(stream)
+    url = list(config.values())
+    return url[0]
 
 
 def read_command_line(parser):
-    parser.add_argument("yaml_filename", help="name of the yaml configuration file", nargs='?', default=CONFIG)
+    """
+    read the command line and expect a valid url
+    :param parser:
+    :return: url if there is one passed in command line, None if there is nothing
+    """
+    parser.add_argument("url", help="url of the website to download and explore", nargs='?')
     parameter = parser.parse_args()
-    file_name = parameter.yaml_filename
-    dir_path = path.dirname(path.realpath(__file__))
-    return dir_path + '/' + file_name
-
-
-def get_url(parser):
-    filename = read_command_line(parser)
-    fetched_url = read_yaml_config(filename)
-    return fetched_url
-
-
-def read_config():
-    parser = ArgumentParser()
-    url = list(get_url(parser).values())[0]
+    url = parameter.url
     return url
+
+
+def get_url():
+    """
+    :return: url passed in command line or contained in the config file if there is no command line argument
+    """
+    parser = ArgumentParser()
+    url = read_command_line(parser)
+    if url is not None:
+        return url
+    return read_yaml_config()
