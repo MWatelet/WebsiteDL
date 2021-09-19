@@ -1,5 +1,5 @@
 from os import path
-from HtmlHandlers import HtmlDownloader, HtmlParser
+from src.HtmlHandlers import HtmlDownloader, HtmlParser
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlparse
