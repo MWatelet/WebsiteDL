@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append("WebsiteDL/src/")
 import unittest
 from parameterized import parameterized
 from src.WebsiteDL import WebsiteDL

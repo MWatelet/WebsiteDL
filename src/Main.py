@@ -1,5 +1,5 @@
-from src.WebsiteDL import WebsiteDL
-from src.ParamReader import ParamReader
+from WebsiteDL import WebsiteDL
+from ParamReader import ParamReader
 
 if __name__ == "__main__":
     param_reader = ParamReader()

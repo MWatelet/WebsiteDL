@@ -1,5 +1,5 @@
 from os import path
-from src.HtmlHandlers import HtmlDownloader, HtmlParser
+from HtmlHandlers import HtmlDownloader, HtmlParser
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlparse
@@ -42,7 +42,8 @@ class WebsiteDL:
             return
         urls_in_page = self.parser.parse_html(file_name)  # find all the links in the html file
         urls_in_page = set(map(self.sanitize_url, urls_in_page))
-        urls_in_page.remove(None)
+        if None in urls_in_page:
+            urls_in_page.remove(None)
 
         for referenced_url in urls_in_page:
             self.store(current_url, referenced_url)  # store the fact that this page has a link to this referenced url
