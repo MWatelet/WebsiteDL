@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlparse
 
-EXTENSIONS = [".jpg", ".jpeg", ".mp4", ".webm", ".ogg", ".mp3", ".wav", ".png", ".gif"]
+EXTENSIONS = [".jpg", ".jpeg", ".mp4", ".webm", ".ogg", ".mp3", ".wav", ".png", ".gif", ".pdf"]  # w3 standards web extensions
 
 
 class WebsiteDL:
